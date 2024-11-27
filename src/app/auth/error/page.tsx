@@ -1,5 +1,5 @@
 import { ErrorCard } from "@/features/auth/components";
 
-export const AuthErrorPage = () => {
+export default function AuthErrorPage() {
   return <ErrorCard />;
-};
+}

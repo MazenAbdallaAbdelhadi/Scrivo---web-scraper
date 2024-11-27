@@ -23,7 +23,9 @@ export function RoleBasedGuard({
 }: RoleBasedGuardProp) {
   const user = useCurrentUser();
 
-  const currentRole = user?.role!;
+  if (!user || !user?.role) return;
+
+  const currentRole = user.role;
 
   if (typeof roles !== "undefined" && !roles?.includes(currentRole)) {
     return hasContent ? (

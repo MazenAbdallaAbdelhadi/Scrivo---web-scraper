@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import {
-  MousePointerClickIcon,
   SquareDashedMousePointerIcon,
 } from "lucide-react";
 

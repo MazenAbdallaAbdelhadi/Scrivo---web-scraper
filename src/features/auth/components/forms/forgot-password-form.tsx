@@ -41,7 +41,7 @@ export const ForgotPasswordForm = () => {
             toast.success(res.success);
           }
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error("Something went wrong!");
         });
     });

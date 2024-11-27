@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Props extends React.HTMLAttributes<HTMLOrSVGElement> {}
+type Props = React.HTMLAttributes<HTMLOrSVGElement>;
 
 export default function ForbiddenIllustration(props: Props) {
   return (

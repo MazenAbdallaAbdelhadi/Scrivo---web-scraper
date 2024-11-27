@@ -52,7 +52,8 @@ export const DeleteWorkflowDialaog = ({
             If you delete this workflow, you will not be able to recover it.
             <div className="flex flex-col py-4 gap-2">
               <p>
-                If you are sure, enter <b>"{workflowName}"</b> to confirm:
+                If you are sure, enter <b>&quot;{workflowName}&quot;</b> to
+                confirm:
               </p>
               <Input
                 value={confirmText}

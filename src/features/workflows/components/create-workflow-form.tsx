@@ -34,10 +34,13 @@ export const CreateWorkflowForm = () => {
     defaultValues: {},
   });
 
-  const onSubmit = useCallback((values: ICreateWorkflowSchema) => {
-    toast.loading("Creating workflow", { id: "create-workflow" });
-    mutate(values);
-  }, []);
+  const onSubmit = useCallback(
+    (values: ICreateWorkflowSchema) => {
+      toast.loading("Creating workflow", { id: "create-workflow" });
+      mutate(values);
+    },
+    [mutate]
+  );
 
   return (
     <FormProvider methods={form} onSubmit={onSubmit}>

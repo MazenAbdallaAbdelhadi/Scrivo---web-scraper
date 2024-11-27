@@ -52,7 +52,7 @@ export function LoginForm() {
             toast.success(res.success);
           }
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error("Something went wrong!");
         });
     });

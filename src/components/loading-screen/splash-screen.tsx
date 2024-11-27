@@ -5,7 +5,7 @@ import { motion as m } from "framer-motion";
 import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 
-interface SplashScreenProps extends React.HTMLAttributes<HTMLDivElement> {}
+type SplashScreenProps = React.HTMLAttributes<HTMLDivElement>;
 
 export default function SplashScreen({
   className,
@@ -27,7 +27,8 @@ export default function SplashScreen({
         "flex justify-center items-center w-full h-full absolute inset-0 z-50 bg-background",
         className
       )}
-      {...rest}>
+      {...rest}
+    >
       <>
         <m.div
           animate={{
@@ -39,7 +40,8 @@ export default function SplashScreen({
             ease: "easeInOut",
             repeatDelay: 1,
             repeat: Infinity,
-          }}>
+          }}
+        >
           <Logo disabledLink className="size-12" />
         </m.div>
 

@@ -1,16 +1,16 @@
+import { AlertCircle, InboxIcon } from "lucide-react";
+
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
+
 import { currentUser } from "@/lib/auth";
+
 import { getWorkflowForUser } from "@/server/workflows/data";
-import { AlertCircle, InboxIcon } from "lucide-react";
-import React, { Suspense } from "react";
+
 import { CreateWorkflowDialog } from "./create-workflow-dialog";
 import { WorkflowCard } from "./workflow-card";
 
 export const UserWorkflows = async () => {
-  // TODO: remove this line
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const user = await currentUser();
   if (!user || !user.id) {
     return;
@@ -34,11 +34,13 @@ export const UserWorkflows = async () => {
     return <EmptyWorkflows />;
   }
 
-  return <div className="grid grid-cols-1 gap-4">
-    {workflows.map(workflow => (
-      <WorkflowCard key={workflow.id} workflow={workflow}/>
-    ))}
-  </div>;
+  return (
+    <div className="grid grid-cols-1 gap-4">
+      {workflows.map((workflow) => (
+        <WorkflowCard key={workflow.id} workflow={workflow} />
+      ))}
+    </div>
+  );
 };
 
 export const UserWorkFlowsSkeleton = () => {

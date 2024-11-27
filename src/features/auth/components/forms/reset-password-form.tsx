@@ -49,7 +49,7 @@ export const ResetPasswordForm = () => {
             setSuccess(true);
           }
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error("Something went wrong!");
         });
     });

@@ -9,7 +9,7 @@ export default function NotFound() {
       <h1 className="text-primary text-6xl font-semibold">404</h1>
       <p className="text-xl font-semibold">Page Not Found</p>
       <p className="text-sm text-muted-foreground">
-        Don't worry, even the best data sometimes gets lost in the internet
+        Don&apos;t worry, even the best data sometimes gets lost in the internet
       </p>
       <Button asChild>
         <Link href={paths.dashboard.root}>

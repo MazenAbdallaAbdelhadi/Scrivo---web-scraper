@@ -2,7 +2,7 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 
-interface LoadingScreenProps extends React.HTMLAttributes<HTMLDivElement> {}
+type LoadingScreenProps = React.HTMLAttributes<HTMLDivElement>;
 
 export default function LoadingScreen({
   className,
@@ -14,7 +14,8 @@ export default function LoadingScreen({
         "flex justify-center items-center flex-grow gap-4 w-full h-full px-5",
         className
       )}
-      {...rest}>
+      {...rest}
+    >
       <span className="sr-only">Loading...</span>
       <div className="h-8 w-8 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
       <div className="h-8 w-8 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
