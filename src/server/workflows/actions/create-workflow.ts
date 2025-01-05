@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 
-import { WorkflowStatus } from "@/features/types";
+import { WorkflowStatus } from "@/features/workflows/types";
 import {
   createWorkflowSchema,
   ICreateWorkflowSchema,

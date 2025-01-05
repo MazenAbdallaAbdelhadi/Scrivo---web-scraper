@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { currentUser } from "@/lib/auth";
 
-import { getWorkflowForUser } from "@/server/workflows/data";
+import { getWorkflowsForUser } from "@/server/workflows/data";
 
 import { CreateWorkflowDialog } from "./create-workflow-dialog";
 import { WorkflowCard } from "./workflow-card";
@@ -16,7 +16,7 @@ export const UserWorkflows = async () => {
     return;
   }
 
-  const workflows = await getWorkflowForUser(user.id);
+  const workflows = await getWorkflowsForUser(user.id);
 
   if (!workflows) {
     return (

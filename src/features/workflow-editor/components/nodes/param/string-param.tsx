@@ -1,0 +1,41 @@
+"use client";
+import { useId, useState } from "react";
+
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { TaskParam } from "@/features/workflow-editor/types";
+
+interface ParamProps {
+  param: TaskParam;
+  value?: string;
+  updateNodeParamValue: (value: string) => void;
+}
+
+export function StringParam({
+  param,
+  updateNodeParamValue,
+  value,
+}: ParamProps) {
+  const [internalValue, setInternalValue] = useState(value);
+  const id = useId();
+
+  return (
+    <div className="space-y-1 p-1 w-full">
+      <Label htmlFor={id} className="text-xs flex">
+        {param.name}
+        {param.required && <p className="text-red-400 px-2">*</p>}
+      </Label>
+      <Input
+        id={id}
+        className="bg-background text-xs"
+        placeholder="Enter value here"
+        value={internalValue}
+        onChange={(e) => setInternalValue(e.target.value)}
+        onBlur={(e) => updateNodeParamValue(e.target.value)}
+      />
+      {param.helperText && (
+        <p className="text-muted-foreground px-2">{param.helperText}</p>
+      )}
+    </div>
+  );
+}

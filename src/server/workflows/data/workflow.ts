@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 
-export const getWorkflowForUser = async (userId: string) => {
+export const getWorkflowsForUser = async (userId: string) => {
   try {
     return await db.workflow.findMany({
       where: {

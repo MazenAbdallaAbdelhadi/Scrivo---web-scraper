@@ -1,1 +1,1 @@
-export { getWorkflowForUser } from "./workflow";
+export { getWorkflowsForUser } from "./workflow";

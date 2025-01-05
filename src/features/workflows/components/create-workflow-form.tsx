@@ -79,7 +79,7 @@ export const CreateWorkflowForm = () => {
             />
             <FormDescription>
               Provide a brief description of what your worklow does <br /> This
-              is optional but can help you rmeber the workflow&apos;s purpose
+              is optional but can help you remeber the workflow&apos;s purpose
             </FormDescription>
             <FormMessage />
           </div>

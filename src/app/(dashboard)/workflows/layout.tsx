@@ -4,7 +4,7 @@ import { AppSidebar } from "@/components/sidebar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserButton } from "@/features/auth/components";
 
-export default function DashboardLayout({
+export default function WorkflowsLayout({
   children,
 }: {
   children: React.ReactNode;

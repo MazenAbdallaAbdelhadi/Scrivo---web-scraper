@@ -1,10 +1,13 @@
+import { Workflow } from "@prisma/client";
+import Link from "next/link";
+import { FileTextIcon, PlayIcon, ShuffleIcon } from "lucide-react";
+
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { WorkflowStatus } from "@/features/types";
+
 import { cn } from "@/lib/utils";
-import { Workflow } from "@prisma/client";
-import { FileTextIcon, PlayIcon, ShuffleIcon } from "lucide-react";
-import Link from "next/link";
+
+import { WorkflowStatus } from "../types";
 import { WorkflowActions } from "./workflow-actions";
 
 interface IWorkflowCardProps {
