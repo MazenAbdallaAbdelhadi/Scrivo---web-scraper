@@ -1,9 +1,12 @@
 "use client";
 import { Workflow } from "@prisma/client";
 import {
+  addEdge,
   Background,
   BackgroundVariant,
+  Connection,
   Controls,
+  Edge,
   ReactFlow,
   useEdgesState,
   useNodesState,
@@ -16,10 +19,16 @@ import NodeComponent from "./nodes/node-component";
 import { useCallback, useEffect } from "react";
 import { CreateFlowNode } from "../lib/create-flow-node";
 import { AppNode, TaskType } from "../types";
+import { DeletableEdge } from "./edges/deletable-edge";
 
 const nodeTypes = {
   FlowScrapeNode: NodeComponent,
 };
+
+const edgeTypes = {
+  default: DeletableEdge,
+}
+
 
 const snapGrid: [number, number] = [50, 50];
 const fitViewOptions = { padding: 1 };
@@ -30,8 +39,7 @@ interface FlowEditorProps {
 
 export function FlowEditor({ workflow }: FlowEditorProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
-
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const { setViewport, screenToFlowPosition } = useReactFlow();
 
   useEffect(() => {
@@ -70,6 +78,12 @@ export function FlowEditor({ workflow }: FlowEditorProps) {
     setNodes((prevNodes) => prevNodes.concat(newNode));
   }, []);
 
+  const onConnect = useCallback((connection: Connection) => {
+    setEdges((prevEdges) =>
+      addEdge({ ...connection, animated: true }, prevEdges)
+    );
+  }, []);
+
   return (
     <main className="h-full w-full">
       <ReactFlow
@@ -78,11 +92,13 @@ export function FlowEditor({ workflow }: FlowEditorProps) {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         snapToGrid
         snapGrid={snapGrid}
         fitViewOptions={fitViewOptions}
         onDragOver={onDragOver}
         onDrop={onDrop}
+        onConnect={onConnect}
       >
         <Controls
           position="top-left"
