@@ -102,7 +102,7 @@ model Workflow{
   name String
   description String?
 
-  defination String
+  definition String
   status String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
