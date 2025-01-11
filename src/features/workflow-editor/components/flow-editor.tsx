@@ -11,11 +11,11 @@ import {
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
-import { CreateFlowNode } from "../lib/create-flow-node";
-import { TaskType } from "../types";
 
 import NodeComponent from "./nodes/node-component";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { CreateFlowNode } from "../lib/create-flow-node";
+import { AppNode, TaskType } from "../types";
 
 const nodeTypes = {
   FlowScrapeNode: NodeComponent,
@@ -29,10 +29,10 @@ interface FlowEditorProps {
 }
 
 export function FlowEditor({ workflow }: FlowEditorProps) {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
 
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { setViewport } = useReactFlow();
+  const { setViewport, screenToFlowPosition } = useReactFlow();
 
   useEffect(() => {
     try {
@@ -49,6 +49,27 @@ export function FlowEditor({ workflow }: FlowEditorProps) {
     } catch (error) {}
   }, [workflow.definition, setEdges, setNodes, setViewport]);
 
+  const onDragOver = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+
+  const onDrop = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    const taskType = event.dataTransfer.getData("application/reactflow");
+
+    if (typeof taskType === undefined || !taskType) return;
+
+    const position = screenToFlowPosition({
+      x: event.clientX,
+      y: event.clientY,
+    });
+
+    const newNode = CreateFlowNode(taskType as TaskType, position);
+
+    setNodes((prevNodes) => prevNodes.concat(newNode));
+  }, []);
+
   return (
     <main className="h-full w-full">
       <ReactFlow
@@ -60,6 +81,8 @@ export function FlowEditor({ workflow }: FlowEditorProps) {
         snapToGrid
         snapGrid={snapGrid}
         fitViewOptions={fitViewOptions}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
       >
         <Controls
           position="top-left"
