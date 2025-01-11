@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 import { TaskParam } from "../../types";
 import { NodeParamField } from "./node-param-field";
+import { ColorsForHandle } from "./common";
 
 interface NodeInputsProps {
   children: React.ReactNode;
@@ -28,7 +29,8 @@ export function NodeInput({ input, nodeId }: NodeInputProps) {
           type="target"
           position={Position.Left}
           className={cn(
-            "!bg-muted-foreground !border-2 !border-background !-left-2 !size-4"
+            "!bg-muted-foreground !border-2 !border-background !-left-2 !size-4",
+            ColorsForHandle[input.type]
           )}
         />
       )}
