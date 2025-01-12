@@ -1,5 +1,5 @@
 import { LucideProps, TextIcon } from "lucide-react";
-import { TaskParamType, TaskType } from "../../types";
+import { TaskParamType, TaskType, WorkflowTask } from "../../types";
 
 export const ExtractTextFromElement = {
   type: TaskType.EXTRACT_TEXT_FROM_ELEMENT,
@@ -21,7 +21,6 @@ export const ExtractTextFromElement = {
       required: true,
     },
   ],
-  outputs: [
-    { name: "Extracted text", type: TaskParamType.STRING },
-  ],
-};
+  outputs: [{ name: "Extracted text", type: TaskParamType.STRING }],
+  credits: 2,
+} satisfies WorkflowTask;

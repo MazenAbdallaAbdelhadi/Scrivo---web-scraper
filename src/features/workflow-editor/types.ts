@@ -1,4 +1,5 @@
 import { Node } from "@xyflow/react";
+import { LucideProps } from "lucide-react";
 
 export enum TaskParamType {
   STRING = "STRING",
@@ -30,3 +31,13 @@ export interface AppNodeData {
 export interface AppNode extends Node {
   data: AppNodeData;
 }
+
+export type WorkflowTask = {
+  type: TaskType;
+  label: string;
+  icon: React.FC<LucideProps>;
+  isEntryPoint?: boolean;
+  inputs: TaskParam[];
+  outputs: TaskParam[];
+  credits: number;
+};
