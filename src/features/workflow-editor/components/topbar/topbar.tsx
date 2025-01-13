@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SaveButton } from "./save-button";
+import { ExcuteButton } from "./excute-button";
 
 interface TopbarProps {
   title: string;
@@ -33,6 +34,7 @@ export default function Topbar({ title, subtitle,workflowId }: TopbarProps) {
         </div>
       </div>
       <div className="flex gap-1 flex-1 justify-end">
+        <ExcuteButton workflowId={workflowId}/>
         <SaveButton workflowId={workflowId}/>
       </div>
     </header>
