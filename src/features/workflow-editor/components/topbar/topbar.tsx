@@ -11,9 +11,15 @@ interface TopbarProps {
   title: string;
   subtitle?: string;
   workflowId: string;
+  hideButtons?: boolean;
 }
 
-export default function Topbar({ title, subtitle,workflowId }: TopbarProps) {
+export default function Topbar({
+  title,
+  subtitle,
+  workflowId,
+  hideButtons,
+}: TopbarProps) {
   const router = useRouter();
 
   return (
@@ -33,10 +39,12 @@ export default function Topbar({ title, subtitle,workflowId }: TopbarProps) {
           )}
         </div>
       </div>
-      <div className="flex gap-1 flex-1 justify-end">
-        <ExcuteButton workflowId={workflowId}/>
-        <SaveButton workflowId={workflowId}/>
-      </div>
+      {!hideButtons && (
+        <div className="flex gap-1 flex-1 justify-end">
+          <ExcuteButton workflowId={workflowId} />
+          <SaveButton workflowId={workflowId} />
+        </div>
+      )}
     </header>
   );
 }

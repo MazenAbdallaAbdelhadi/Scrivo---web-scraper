@@ -1,5 +1,6 @@
 "use server";
 
+import { ExecuteWorkflow } from "@/features/execution-viewer/lib/execute-workflow";
 import { TaskRegistry } from "@/features/workflow-editor/components/tasks/task-registry";
 import { FlowToExecutionPlan } from "@/features/workflow-editor/lib/execution-plan";
 import {
@@ -10,6 +11,7 @@ import {
 } from "@/features/workflow-editor/types";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { redirect } from "next/navigation";
 
 interface IRunWorkflowForm {
   workflowId: string;
@@ -65,6 +67,7 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
       status: WorkflowExecutionStatus.PENDING,
       startedAt: new Date(),
       trigger: WorkflowExecutionTrigger.MANUAL,
+      definition: flowDefinition,
       phases: {
         create: executionPlan.flatMap((phase) => {
           return phase.nodes.flatMap((node) => {
@@ -88,4 +91,8 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
   if (!execution) {
     throw new Error("workflow execution not created");
   }
+
+  ExecuteWorkflow(execution.id); // run this on background
+
+  redirect(`/workflow/runs/${workflowId}/${execution.id}`);
 }
