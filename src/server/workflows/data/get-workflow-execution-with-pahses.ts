@@ -1,3 +1,4 @@
+"use server";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 
@@ -13,12 +14,12 @@ export const GetWorkflowExecutionWithPhases = async (executionId: string) => {
       id: executionId,
       userId: user.id,
     },
-    include:{
-        phases: {
-            orderBy:{
-                number: "asc"
-            }
-        }
-    }
+    include: {
+      phases: {
+        orderBy: {
+          number: "asc",
+        },
+      },
+    },
   });
 };

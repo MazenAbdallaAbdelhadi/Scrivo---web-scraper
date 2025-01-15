@@ -9,12 +9,14 @@ export async function ExtractTextFromElementExecutor(
     const selector = environment.getInput("Selector");
 
     if (!selector) {
+      environment.log.error("selector not found");
       return false;
     }
 
     const html = environment.getInput("HTML");
 
     if (!html) {
+      environment.log.error("html not found");
       return false;
     }
 
@@ -22,22 +24,21 @@ export async function ExtractTextFromElementExecutor(
     const element = $(selector);
 
     if (!element) {
-      console.log("Element is not found");
-
+      environment.log.error("Element is not found");
       return false;
     }
 
     const extractedText = $.text(element);
     if (!extractedText) {
-      console.log("Elment has no text");
+      environment.log.error("Element has no text");
       return false;
     }
 
     environment.setOutput("Extracted text", extractedText);
 
     return true;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    environment.log.error(error.message);
     return false;
   }
 }
