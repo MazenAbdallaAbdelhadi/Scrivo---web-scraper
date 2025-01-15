@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { useActiveLink } from "@/routes/hooks";
+import { UserAvailableCreditsBadge } from "@/features/billing";
 
 // Menu items.
 const items = [
@@ -63,6 +64,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
+          <UserAvailableCreditsBadge />
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

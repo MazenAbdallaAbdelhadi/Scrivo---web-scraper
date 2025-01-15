@@ -1,8 +1,10 @@
 import { DashboardProvider } from "@/components/app-provider";
 import { AppSidebar } from "@/components/sidebar";
+import { ModeToggle } from "@/components/theme-provider";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserButton } from "@/features/auth/components";
+import { UserAvailableCreditsBadge } from "@/features/billing";
 
 export default function WorkflowsLayout({
   children,
@@ -16,7 +18,11 @@ export default function WorkflowsLayout({
         {/* should be header */}
         <div className="w-full flex justify-between p-4">
           <SidebarTrigger />
-          <UserButton />
+
+          <div className="flex items-center gap-6">
+            <ModeToggle />
+            <UserButton />
+          </div>
         </div>
 
         <div className="flex-1 px-4">{children}</div>

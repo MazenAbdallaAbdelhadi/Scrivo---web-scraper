@@ -33,6 +33,7 @@ model User {
   workflows Workflow[]
   workflowExecutions WorkflowExecution[]
   ExecutionPhases ExecutionPhase[]
+  UserBalance UserBalance?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -167,4 +168,11 @@ model ExecutionLog{
 
   executionPhaseId String
   executionPhase ExecutionPhase @relation(fields: [executionPhaseId], references: [id],onDelete: Cascade)
+}
+
+model UserBalance{
+  userId String @id
+  credits Int @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
