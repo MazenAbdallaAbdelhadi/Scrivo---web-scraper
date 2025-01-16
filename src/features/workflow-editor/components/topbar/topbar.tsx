@@ -6,6 +6,7 @@ import { ChevronLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SaveButton } from "./save-button";
 import { ExcuteButton } from "./excute-button";
+import NavigationTabs from "./navigation-tabs";
 
 interface TopbarProps {
   title: string;
@@ -39,6 +40,9 @@ export default function Topbar({
           )}
         </div>
       </div>
+
+      <NavigationTabs workflowId={workflowId} />
+
       {!hideButtons && (
         <div className="flex gap-1 flex-1 justify-end">
           <ExcuteButton workflowId={workflowId} />
