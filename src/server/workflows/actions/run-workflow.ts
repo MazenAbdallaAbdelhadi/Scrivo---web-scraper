@@ -9,6 +9,7 @@ import {
   WorkflowExecutionStatus,
   WorkflowExecutionTrigger,
 } from "@/features/workflow-editor/types";
+import { WorkflowStatus } from "@/features/workflows/types";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -46,6 +47,9 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
   }
 
   let executionPlan: WorkflowExcutionPlan;
+  if (workflow.status === WorkflowStatus.PUBLISHED) {
+    executionPlan = JSON.parse(workflow.executionPlan!);
+  }
 
   const flow = JSON.parse(flowDefinition);
 
