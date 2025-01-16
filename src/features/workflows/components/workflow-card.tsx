@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 import { WorkflowStatus } from "../types";
 import { WorkflowActions } from "./workflow-actions";
+import { RunWorkflowButton } from "./run-workflow-button";
 
 interface IWorkflowCardProps {
   workflow: Workflow;
@@ -57,6 +58,8 @@ export const WorkflowCard = ({ workflow }: IWorkflowCardProps) => {
         </div>
 
         <div className="flex items-center space-x-2">
+          {!isDraft && <RunWorkflowButton workflowId={workflow.id}/>}
+
           <Link
             href={`/workflow/editor/${workflow.id}`}
             className={cn(

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { PublishWorkflow } from "@/server/workflows/actions/publish-workflow";
 import { useMutation } from "@tanstack/react-query";
 import { useReactFlow } from "@xyflow/react";
-import { ChecIcon, UploadIcon } from "lucide-react";
+import { UploadIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useExecutionPlan } from "../../hooks/use-execution-plan";
 

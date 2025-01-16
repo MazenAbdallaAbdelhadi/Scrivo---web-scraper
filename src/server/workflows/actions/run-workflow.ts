@@ -31,10 +31,6 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
     throw new Error("workflowId is required");
   }
 
-  if (!flowDefinition) {
-    throw new Error("flowDefinition is not defined");
-  }
-
   const workflow = await db.workflow.findUnique({
     where: {
       id: workflowId,
@@ -47,22 +43,27 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
   }
 
   let executionPlan: WorkflowExcutionPlan;
+  let workflowDefinition = flowDefinition;
   if (workflow.status === WorkflowStatus.PUBLISHED) {
     executionPlan = JSON.parse(workflow.executionPlan!);
+    workflowDefinition = workflow.definition;
+  } else {
+    if (!flowDefinition) {
+      throw new Error("flow definition is not defined");
+    }
+    const flow = JSON.parse(flowDefinition);
+    const result = FlowToExecutionPlan(flow.nodes, flow.edges);
+
+    if (result.error) {
+      throw new Error("flow definition not valid");
+    }
+
+    if (!result.executionPlan) {
+      throw new Error("no execution plan generated");
+    }
+
+    executionPlan = result.executionPlan;
   }
-
-  const flow = JSON.parse(flowDefinition);
-
-  const result = FlowToExecutionPlan(flow.nodes, flow.edges);
-  if (result.error) {
-    throw new Error("flow definition not valid");
-  }
-
-  if (!result.executionPlan) {
-    throw new Error("no execution plan generated");
-  }
-
-  executionPlan = result.executionPlan;
 
   const execution = await db.workflowExecution.create({
     data: {
@@ -71,7 +72,7 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
       status: WorkflowExecutionStatus.PENDING,
       startedAt: new Date(),
       trigger: WorkflowExecutionTrigger.MANUAL,
-      definition: flowDefinition,
+      definition: workflowDefinition,
       phases: {
         create: executionPlan.flatMap((phase) => {
           return phase.nodes.flatMap((node) => {
