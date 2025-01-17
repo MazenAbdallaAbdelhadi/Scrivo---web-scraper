@@ -1,6 +1,13 @@
 import { Workflow } from "@prisma/client";
 import Link from "next/link";
-import { FileTextIcon, PlayIcon, ShuffleIcon } from "lucide-react";
+import {
+  CoinsIcon,
+  CornerDownRightIcon,
+  FileTextIcon,
+  MoveRightIcon,
+  PlayIcon,
+  ShuffleIcon,
+} from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +17,9 @@ import { cn } from "@/lib/utils";
 import { WorkflowStatus } from "../types";
 import { WorkflowActions } from "./workflow-actions";
 import { RunWorkflowButton } from "./run-workflow-button";
+import SchedulerDialog from "./scheduler-dialog";
+import { Hint } from "@/components/hint";
+import { Badge } from "@/components/ui/badge";
 
 interface IWorkflowCardProps {
   workflow: Workflow;
@@ -54,11 +64,19 @@ export const WorkflowCard = ({ workflow }: IWorkflowCardProps) => {
                 </span>
               )}
             </h3>
+
+            {!isDraft && (
+              <ScheduleSection
+                creditsCost={workflow.creditsCost}
+                workflowId={workflow.id}
+                cron={workflow.cron || ""}
+              />
+            )}
           </div>
         </div>
 
         <div className="flex items-center space-x-2">
-          {!isDraft && <RunWorkflowButton workflowId={workflow.id}/>}
+          {!isDraft && <RunWorkflowButton workflowId={workflow.id} />}
 
           <Link
             href={`/workflow/editor/${workflow.id}`}
@@ -80,3 +98,38 @@ export const WorkflowCard = ({ workflow }: IWorkflowCardProps) => {
     </Card>
   );
 };
+
+function ScheduleSection({
+  creditsCost,
+  workflowId,
+  cron,
+}: {
+  creditsCost: number;
+  workflowId: string;
+  cron: string;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <CornerDownRightIcon className="size-4 text-muted-foreground" />
+
+      <SchedulerDialog
+        workflowId={workflowId}
+        cron={cron}
+        key={`${cron}-${workflowId}`}
+      />
+
+      <MoveRightIcon className="size-4 text-muted-foreground" />
+      <Hint content="Credit consumption for full run">
+        <div className="flex items-center gap-3">
+          <Badge
+            variant="outline"
+            className="space-x-2 text-muted-foreground rounded-sm"
+          >
+            <CoinsIcon className="size-4 " />
+            <span className="text-sm">{creditsCost}</span>
+          </Badge>
+        </div>
+      </Hint>
+    </div>
+  );
+}
