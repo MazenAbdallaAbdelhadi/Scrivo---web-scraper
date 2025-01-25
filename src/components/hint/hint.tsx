@@ -13,6 +13,8 @@ interface IHintProps {
 }
 
 export const Hint = ({ children, content, side }: IHintProps) => {
+  if (!content) return <>{children}</>;
+
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
