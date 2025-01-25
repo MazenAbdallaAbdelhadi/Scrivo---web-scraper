@@ -22,10 +22,14 @@ import { RunWorkflowButton } from "./run-workflow-button";
 import SchedulerDialog from "./scheduler-dialog";
 import { Hint } from "@/components/hint";
 import { Badge } from "@/components/ui/badge";
-import { ExecutionStatusIndicator, ExecutionStatusLabel } from "@/features/execution-viewer/components/execution-status-indicator";
+import {
+  ExecutionStatusIndicator,
+  ExecutionStatusLabel,
+} from "@/features/execution-viewer/components/execution-status-indicator";
 import { WorkflowExecutionStatus } from "@/features/workflow-editor/types";
 import { format, formatDistanceToNow } from "date-fns";
 import { formatInTimeZone } from "date-fns-tz";
+import { DuplicateWorkflowDialog } from "./duplicate-workflow-dialog";
 
 interface IWorkflowCardProps {
   workflow: Workflow;
@@ -40,7 +44,7 @@ export const WorkflowCard = ({ workflow }: IWorkflowCardProps) => {
   const isDraft = workflow.status === WorkflowStatus.DRAFT;
 
   return (
-    <Card className="shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30">
+    <Card className="shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card">
       <CardContent className="p-4 flex items-center justify-between h-[100px]">
         <div className="flex items-center justify-end space-x-3">
           <div
@@ -69,6 +73,8 @@ export const WorkflowCard = ({ workflow }: IWorkflowCardProps) => {
                   Draft
                 </span>
               )}
+
+              <DuplicateWorkflowDialog workflowId={workflow.id} />
             </h3>
 
             {!isDraft && (
