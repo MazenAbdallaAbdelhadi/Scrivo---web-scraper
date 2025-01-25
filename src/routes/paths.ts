@@ -25,7 +25,7 @@ export const paths = {
  * @type {string[]}
  */
 
-export const publicRoutes = ["/auth/new-verification"];
+export const publicRoutes = ["/auth/new-verification", "/api/workflows"];
 
 /**
  * An Array of routes that are used for authentication
