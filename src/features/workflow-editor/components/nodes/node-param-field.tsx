@@ -3,6 +3,7 @@ import { AppNode, TaskParam, TaskParamType } from "../../types";
 import { StringParam } from "./param/string-param";
 import { useCallback } from "react";
 import BrowserInstanceParam from "./param/browser-instance-param";
+import SelectParam from "./param/select-param";
 
 interface NodeParamFieldProps {
   param: TaskParam;
@@ -49,6 +50,16 @@ export function NodeParamField({
           updateNodeParamValue={updateNodeParamValue}
         />
       );
+
+      case TaskParamType.SELECT:
+        return (
+          <SelectParam
+            param={param}
+            value={value}
+            updateNodeParamValue={updateNodeParamValue}
+            disabled={disabled}
+          />
+        );
 
     default:
       return (

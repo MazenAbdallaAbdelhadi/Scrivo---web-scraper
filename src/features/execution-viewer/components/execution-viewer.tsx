@@ -69,7 +69,7 @@ export function ExecutionViewer({ initialData }: ExecutionViewerProps) {
   });
 
   const phaseDetails = useQuery({
-    queryKey: ["phaseDetails", selectedPhase],
+    queryKey: ["phaseDetails", selectedPhase, query.data?.status],
     enabled: selectedPhase !== null,
     queryFn: () => GetWorkflowPhaseDetails(selectedPhase!),
   });
@@ -116,7 +116,7 @@ export function ExecutionViewer({ initialData }: ExecutionViewerProps) {
                 <PhaseStatusBadge
                   status={query.data?.status as ExecutionPhaseStatus}
                 />
-                <span >{query.data?.status}</span>
+                <span>{query.data?.status}</span>
               </div>
             }
           />
