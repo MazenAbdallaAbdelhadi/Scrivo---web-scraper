@@ -39,7 +39,7 @@ const items = [
   },
   {
     title: "Credentials",
-    url: "/creadentials",
+    url: "/credentials",
     icon: ShieldCheck,
   },
   {
