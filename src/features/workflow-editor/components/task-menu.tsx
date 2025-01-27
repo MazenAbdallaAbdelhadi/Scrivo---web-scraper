@@ -9,6 +9,8 @@ import {
 import { TaskType } from "../types";
 import { TaskRegistry } from "./tasks/task-registry";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CoinsIcon } from "lucide-react";
 
 export default function TaskMenu() {
   return (
@@ -94,8 +96,15 @@ function TaskMenuButton({ taskType }: { taskType: TaskType }) {
       draggable
       onDragStart={(event) => onDragStart(event, taskType)}
     >
-      <task.icon size={20} />
-      {task.label}
+      <div className="flex gap-2">
+        <task.icon size={20} />
+        {task.label}
+      </div>
+
+      <Badge className="gap-2 flex items-center" variant="outline">
+        <CoinsIcon size={16} />
+        {task.credits}
+      </Badge>
     </Button>
   );
 }
