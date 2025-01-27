@@ -55,6 +55,8 @@ export async function RunWorkflow(form: IRunWorkflowForm) {
     const result = FlowToExecutionPlan(flow.nodes, flow.edges);
 
     if (result.error) {
+      console.log(JSON.stringify(result.error, null, 4));
+
       throw new Error("flow definition not valid");
     }
 

@@ -17,11 +17,16 @@ import FormProvider, { RHFField } from "@/components/hook-form";
 import { ICreateCredentialSchema, createCredentialSchema } from "../schemas";
 import { CreateCredentialAction } from "@/server/credentials/actions/create-credential";
 
-export const CreateCredentialForm = () => {
+export const CreateCredentialForm = ({
+  setOpen,
+}: {
+  setOpen: (v: boolean) => void;
+}) => {
   const { mutate, isPending } = useMutation({
     mutationFn: CreateCredentialAction,
     onSuccess: () => {
       toast.success("Credential created", { id: "create-credential" });
+      setOpen(false);
     },
     onError: () => {
       toast.error("Failed to create credential", { id: "create-credential" });
@@ -77,7 +82,8 @@ export const CreateCredentialForm = () => {
               {...field}
             />
             <FormDescription>
-              Enter the value associated with this credential<br/>
+              Enter the value associated with this credential
+              <br />
               this value will be securely encrypted and stored
             </FormDescription>
             <FormMessage />

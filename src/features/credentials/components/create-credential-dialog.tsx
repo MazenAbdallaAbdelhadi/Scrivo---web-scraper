@@ -26,7 +26,9 @@ export const CreateCredentialDialog = ({
       <DialogContent className="px-0">
         <CustomDialogHeader icon={ShieldEllipsis} title="Create credential" />
 
-        <div className="p-6">{open && <CreateCredentialForm />}</div>
+        <div className="p-6">
+          {open && <CreateCredentialForm setOpen={(v) => setOpen(v)} />}
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -5,6 +5,7 @@ export enum TaskParamType {
   STRING = "STRING",
   BROWSER_INSTANCE = "BROWSER_INSTANCE",
   SELECT = "SELECT",
+  CREDENTIAL = "CREDENTIAL",
 }
 
 export enum TaskType {
@@ -15,6 +16,7 @@ export enum TaskType {
   CLICK_ELEMENT = "CLICK_ELEMENT",
   WAIT_FOR_ELEMENT = "WAIT_FOR_ELEMENT",
   DELIVER_VIA_WEBHOOK = "DELIVER_VIA_WEBHOOK",
+  EXTRACT_DATA_WITH_AI = "EXTRACT_DATA_WITH_AI",
 }
 
 export interface TaskParam {
