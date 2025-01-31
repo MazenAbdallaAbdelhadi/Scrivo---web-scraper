@@ -1,6 +1,14 @@
-import puppeteer from "puppeteer";
-import { ExecutionEnvironment } from "../../types";
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import AdblockerPlugin  from "puppeteer-extra-plugin-adblocker";
+// import blockResourcesPlugin  from "puppeteer-extra-plugin-block-resources";
+
 import { LaunchBrowser } from "@/features/workflow-editor/components/tasks/launch-browser";
+import { ExecutionEnvironment } from "../../types";
+
+puppeteer.use(StealthPlugin());
+puppeteer.use(AdblockerPlugin());
+// puppeteer.use(blockResourcesPlugin());
 
 export async function LaunchBrowserExecutor(
   environment: ExecutionEnvironment<typeof LaunchBrowser>
