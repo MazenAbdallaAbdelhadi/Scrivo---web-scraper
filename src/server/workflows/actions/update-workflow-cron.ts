@@ -22,7 +22,7 @@ export async function UpdateWorkflowCron({
   try {
     const interval = parser.parseExpression(cron, { utc: true });
 
-    return await db.workflow.update({
+    await db.workflow.update({
       where: { id, userId },
       data: {
         cron,
@@ -30,7 +30,7 @@ export async function UpdateWorkflowCron({
       },
     });
     revalidatePath("/workflows");
-  } catch (error) {
+  } catch {
     throw new Error("invalid cron expression");
   }
 }

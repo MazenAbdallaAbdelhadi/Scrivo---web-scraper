@@ -8,15 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { ChartColumnStackedIcon, Layers2Icon } from "lucide-react";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { ChartColumnStackedIcon } from "lucide-react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { GetCreditUsageInPeriod } from "@/server/analytics/actions/get-credit-usage-in-period";
 
 type ChartData = Awaited<ReturnType<typeof GetCreditUsageInPeriod>>;

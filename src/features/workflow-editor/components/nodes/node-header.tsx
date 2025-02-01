@@ -46,7 +46,8 @@ export default function NodeHeader({ taskType, nodeId }: NodeHeaderProps) {
                 size="icon"
                 onClick={() => {
                   const node = getNode(nodeId) as AppNode;
-                  const newX = node.position.x + node.measured?.width! + 20;
+                  const newX =
+                    node.position.x + (node.measured?.width || 0) + 20;
                   const newY = node.position.y;
                   const newNode = CreateFlowNode(node.data.type, {
                     x: newX,

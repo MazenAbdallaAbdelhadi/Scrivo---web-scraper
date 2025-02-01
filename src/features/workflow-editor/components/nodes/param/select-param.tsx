@@ -28,7 +28,6 @@ export default function SelectParam({
   param,
   value,
   updateNodeParamValue,
-  disabled,
 }: SelectParamProps) {
   const id = useId();
 

@@ -9,8 +9,6 @@ interface BrowserInstanceParamProps {
 
 export default function BrowserInstanceParam({
   param,
-  value,
-  updateNodeParamValue,
 }: BrowserInstanceParamProps) {
   return <p className="text-xs">{param.name}</p>;
 }

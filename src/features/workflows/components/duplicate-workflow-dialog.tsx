@@ -15,7 +15,6 @@ interface ICreateWorkflowDialogProps {
 }
 
 export const DuplicateWorkflowDialog = ({
-  triggerText,
   workflowId,
 }: ICreateWorkflowDialogProps) => {
   const [open, setOpen] = useState(false);

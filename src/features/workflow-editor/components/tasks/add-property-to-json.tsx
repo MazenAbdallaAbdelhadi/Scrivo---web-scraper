@@ -1,4 +1,4 @@
-import { DatabaseIcon, FileJson2Icon, LucideProps } from "lucide-react";
+import { DatabaseIcon, LucideProps } from "lucide-react";
 import { TaskParamType, TaskType, WorkflowTask } from "../../types";
 
 export const AddPropertyToJson = {

@@ -2,7 +2,6 @@ import { ExtractDataWithAI } from "@/features/workflow-editor/components/tasks/e
 import { ExecutionEnvironment } from "../../types";
 import { db } from "@/lib/db";
 import { symmetricDecrypt } from "@/lib/encryption";
-import OpenAI from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function ExtractDataWithAIExecutor(

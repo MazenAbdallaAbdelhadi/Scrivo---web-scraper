@@ -77,6 +77,8 @@ export async function GET(request: Request) {
 
     return new Response(null, { status: 200 });
   } catch (error) {
+    console.error(error);
+    
     return Response.json({ error: "internal server error" }, { status: 500 });
   }
 }
@@ -89,6 +91,8 @@ function isValidSecret(secret: string) {
   try {
     return timingSafeEqual(Buffer.from(secret), Buffer.from(API_SECRET));
   } catch (error) {
+    console.error(error);
+    
     return false;
   }
 }

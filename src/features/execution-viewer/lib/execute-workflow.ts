@@ -149,6 +149,7 @@ async function finalizeWorkflowExecution(
       // ignore
       // this means that we have triggered other runs for this workflow
       // while an execution was running
+      console.error(err);
     });
 }
 
@@ -337,7 +338,7 @@ async function decrementCredits(
     });
 
     return true;
-  } catch (error) {
+  } catch {
     logCollector.error("insufficient balance");
     return false;
   }

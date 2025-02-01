@@ -25,7 +25,6 @@ export default function CredentialsParam({
   param,
   value,
   updateNodeParamValue,
-  disabled,
 }: CredentialsParamProps) {
   const id = useId();
   const query = useQuery({

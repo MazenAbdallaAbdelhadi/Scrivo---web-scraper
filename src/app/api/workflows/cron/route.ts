@@ -2,7 +2,7 @@ import { WorkflowStatus } from "@/features/workflows/types";
 import { db } from "@/lib/db";
 import { getAppUrl } from "@/lib/helper/app-url";
 
-export async function GET(req: Request) {
+export async function GET() {
   const now = new Date();
   const workflows = await db.workflow.findMany({
     select: { id: true },

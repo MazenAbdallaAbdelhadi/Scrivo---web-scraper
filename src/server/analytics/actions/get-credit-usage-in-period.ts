@@ -1,7 +1,6 @@
 import { Period } from "@/features/analytics/types";
 import {
   ExecutionPhaseStatus,
-  WorkflowExecutionStatus,
 } from "@/features/workflow-editor/types";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";

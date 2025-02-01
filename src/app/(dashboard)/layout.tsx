@@ -4,7 +4,6 @@ import { ModeToggle } from "@/components/theme-provider";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserButton } from "@/features/auth/components";
-import { UserAvailableCreditsBadge } from "@/features/billing";
 
 export default function WorkflowsLayout({
   children,
