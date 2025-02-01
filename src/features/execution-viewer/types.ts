@@ -18,7 +18,7 @@ export type ExecutionEnvironment<T extends WorkflowTask> = {
   setOutput(name: T["outputs"][number]["name"], value: string): void;
   getBrowser(): Browser | BrowserCore | undefined;
   setBrowser(browser: Browser | BrowserCore): void;
-  getPage(): Page | PageCore | undefined;
+  getPage(): Page | undefined;
   setPage(page: Page | PageCore): void;
   log: LogCollector;
 };
