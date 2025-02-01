@@ -1,4 +1,5 @@
 import { Browser, Page } from "puppeteer";
+import { type Browser as BrowserCore, type Page as PageCore } from "puppeteer-core";
 import { WorkflowTask } from "../workflow-editor/types";
 
 export type Environment = {
@@ -15,10 +16,10 @@ export type Environment = {
 export type ExecutionEnvironment<T extends WorkflowTask> = {
   getInput(name: T["inputs"][number]["name"]): string;
   setOutput(name: T["outputs"][number]["name"], value: string): void;
-  getBrowser(): Browser | undefined;
-  setBrowser(browser: Browser): void;
-  getPage(): Page | undefined;
-  setPage(page: Page): void;
+  getBrowser(): Browser | BrowserCore | undefined;
+  setBrowser(browser: Browser | BrowserCore): void;
+  getPage(): Page | PageCore | undefined;
+  setPage(page: Page | PageCore): void;
   log: LogCollector;
 };
 
