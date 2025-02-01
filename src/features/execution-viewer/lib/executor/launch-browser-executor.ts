@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer-extra";
-import StealthPlugin from "puppeteer-extra-plugin-stealth";
-import AdblockerPlugin  from "puppeteer-extra-plugin-adblocker";
+// import StealthPlugin from "puppeteer-extra-plugin-stealth";
+// import AdblockerPlugin  from "puppeteer-extra-plugin-adblocker";
 // import blockResourcesPlugin  from "puppeteer-extra-plugin-block-resources";
 
 import { LaunchBrowser } from "@/features/workflow-editor/components/tasks/launch-browser";
