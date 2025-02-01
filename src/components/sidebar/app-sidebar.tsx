@@ -43,8 +43,8 @@ const items = [
     icon: ShieldCheck,
   },
   {
-    title: "Billings",
-    url: "/billings",
+    title: "Billing",
+    url: "/billing",
     icon: DollarSign,
   },
   {
