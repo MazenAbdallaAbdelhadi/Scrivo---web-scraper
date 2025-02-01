@@ -6,8 +6,8 @@ import AdblockerPlugin  from "puppeteer-extra-plugin-adblocker";
 import { LaunchBrowser } from "@/features/workflow-editor/components/tasks/launch-browser";
 import { ExecutionEnvironment } from "../../types";
 
-puppeteer.use(StealthPlugin());
-puppeteer.use(AdblockerPlugin());
+// puppeteer.use(StealthPlugin());
+// puppeteer.use(AdblockerPlugin());
 // puppeteer.use(blockResourcesPlugin());
 
 export async function LaunchBrowserExecutor(
